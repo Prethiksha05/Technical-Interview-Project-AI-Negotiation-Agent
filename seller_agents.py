@@ -1,9 +1,10 @@
+# seller_agents.py
 from typing import Tuple
 from environment import Product
 
 class BaseSellerAgent:
     """Interface for hidden sellers used in tests."""
-    def __init__(self, min_price: int, personality: str = "standard"):
+    def _init_(self, min_price: int, personality: str = "standard"):
         self.min_price = int(min_price)
         self.personality = personality
 
@@ -45,6 +46,8 @@ class ToughSeller(BaseSellerAgent):
         counter = max(self.min_price, int(buyer_offer * step))
         msg = "Not close. ₹{p}.".format(p=counter) if round_num < 7 else "Last stretch: ₹{p}.".format(p=counter)
         return counter, msg, False
+
+
 class FriendlySeller(BaseSellerAgent):
     """More cooperative: lower opening and faster convergence."""
     def get_opening_price(self, product: Product) -> Tuple[int, str]:
@@ -58,5 +61,3 @@ class FriendlySeller(BaseSellerAgent):
         step = 1.10 if round_num < 6 else 1.04
         counter = max(self.min_price, int(buyer_offer * step))
         return counter, f"I can meet you at ₹{counter}.", False
-
-
