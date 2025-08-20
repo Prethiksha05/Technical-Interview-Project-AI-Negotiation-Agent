@@ -1,0 +1,3 @@
+ Minimal; project mainly uses stdlib.
+# If you prefer auto .env loading with python-dotenv, add it and remove if not needed.
+python-dotenv>=1.0.0
