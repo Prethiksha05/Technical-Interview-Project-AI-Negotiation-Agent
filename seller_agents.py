@@ -1,4 +1,3 @@
-# seller_agents.py
 from typing import Tuple
 from environment import Product
 
